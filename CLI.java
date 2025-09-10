@@ -10,6 +10,18 @@ public class CLI {
     }
 
     //delay
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to RAAScanner");
+        wait(2);
+        System.out.println("Input number");
+        int inputNumber = scanner.NextInt();
+        wait(1);
+        System.out.println("Input number");
+
+    }
+
     public static void wait(int x) {
         try {
             Thread.sleep(x * 1000);
