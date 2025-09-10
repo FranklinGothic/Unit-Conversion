@@ -1,36 +1,50 @@
 import java.util.Scanner;
 
 public class CLI {
-    public static void main(String[] args) {
-        CLI cli = new CLI();
-        UnitConverter converter = new UnitConverter();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to RAAScanner");
-        wait(2);
-        cli.printUnits();
-        System.out.println("");
+    private final String[] units = {"inch", "feet", "yard", "mile", "nanometer", "micrometer", "millimeter", "centimeter", "meter", "kilometer"};
+
+    public double initialAmount(){
+        Scanner input = new Scanner(System.in);
+
         System.out.println("Input number: ");
-        int inputNumber = scanner.nextInt();
-        System.out.println("Input initial unit: ");
-        String initialValue = scanner.next();
-        System.out.println("Input final unit: ");
-        String finalValue = scanner.next();
+        double inputNumber = input.nextDouble();
 
+        return inputNumber;
     }
 
-    public static void wait(int x) {
-        try {
-            Thread.sleep(x * 1000);
-        }
-        catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+    public String initialUnit(){
+        System.out.println("Please select a unit to convert from!\t");
+        printUnits();
+        System.out.print("\nUnit to convert from: ");
+        return getUnit();
     }
 
-    public void printUnits(){
-        String[] units = {"inch", "feet", "yard", "meter", "kilometer", "micrometer", "millimeter", "centimeter", "mile"};
+    public String convertUnit(){
+        System.out.println("Please select a unit to convert too!\t");
+        printUnits();
+        System.out.print("\nUnit to convert too: ");
+        return getUnit();
+    }
+
+    private void printUnits(){
         for (int i = 0; i < units.length; i++){
-            System.out.println(units[i] + "\t");
+            System.out.print(units[i]);
+            spacing(i);
+            if (i % 2 == 1 || i == units.length - 1) {
+                System.out.println();
+            }
         }
+    }
+    private void spacing(int index){
+        int wordLength = units[index].length();
+        int spacing = 12 - wordLength;
+        for (int i = 0; i < spacing; i++){
+            System.out.print(" ");
+        }
+    }
+    private String getUnit(){
+        Scanner input = new Scanner(System.in);
+        String unit = input.nextLine();
+        return unit;
     }
 }
