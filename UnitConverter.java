@@ -8,7 +8,7 @@ public class UnitConverter {
                "yard", "yd",
                "mile", "mi",
                "nanometer", "nm",
-               "micrometer", "µm",
+               "micrometer", "um",
                "millimeter", "mm",
                "centimeter", "cm",
                "meter", "m",
