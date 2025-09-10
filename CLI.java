@@ -1,7 +1,6 @@
-import java.util.*;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-public class cli {
+
+public class CLI {
     //delay
     public static void wait(int x) {
         try {
