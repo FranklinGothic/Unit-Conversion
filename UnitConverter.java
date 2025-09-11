@@ -176,5 +176,4 @@ public class UnitConverter {
    }
 
    public class Volume {}
-   public class Mass {}
 }

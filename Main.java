@@ -7,14 +7,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchFieldException {
         CLI cli = new CLI();
-        System.out.println("[1] - Length, [2] - Area, [3] - Volume, [4] - Mass");
+        System.out.println("[1] - Length, [2] - Area, [3] - Volume");
         Scanner input = new Scanner(System.in);
         int selection = input.nextInt();
         Map<Integer, String> classType = Map.of(
                 1, "Length",
                 2, "Area",
-                3, "Volume",
-                4, "Mass"
+                3, "Volume"
         );
         Class converter = fromType(classType.get(selection));
 
