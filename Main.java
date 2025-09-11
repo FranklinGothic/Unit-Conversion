@@ -2,11 +2,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchFieldException {
         CLI cli = new CLI();
-        Class converter = fromType("Length");
+        System.out.println("[1] - Length, [2] - Area, [3] - Volume, [4] - Mass");
+        Scanner input = new Scanner(System.in);
+        int selection = input.nextInt();
+        Map<Integer, String> classType = Map.of(
+                1, "Length",
+                2, "Area",
+                3, "Volume",
+                4, "Mass"
+        );
+        Class converter = fromType(classType.get(selection));
 
         System.out.println("Welcome to RAAScanner\n");
         double toConvertNum = cli.initialAmount();
