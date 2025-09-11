@@ -1,20 +1,27 @@
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Main {
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchFieldException {
         CLI cli = new CLI();
-        UnitConverter converter = new UnitConverter();
+        Class converter = fromType("Length");
 
         System.out.println("Welcome to RAAScanner\n");
         double toConvertNum = cli.initialAmount();
-        String initialUnit = cli.initialUnit();
-        String convertUnit = cli.convertUnit();
+        String initialUnit = cli.initialUnit(converter);
+        String convertUnit = cli.convertUnit(converter);
 
-        Method conversionMethod = UnitConverter.Length.class.getDeclaredMethod(initialUnit, double.class);
-        Method toMethod = UnitConverter.Length.class.getDeclaredMethod("to_" + convertUnit, double.class);
+        Method conversionMethod = converter.getDeclaredMethod(initialUnit, double.class);
+        Method toMethod = converter.getDeclaredMethod("to_" + convertUnit, double.class);
 
-        System.out.println(toConvertNum + " " + UnitConverter.Length.units.get(initialUnit) + " -> " + UnitConverter.Length.units.get(convertUnit));
-        System.out.println(toMethod.invoke(null, conversionMethod.invoke(null, toConvertNum)) + " " + UnitConverter.Length.units.get(convertUnit));
-        //Im done for now so we finish reflection tomrw
+        Map<String, String> units = (Map<String, String>) converter.getField("units").get(null);
+
+        System.out.println(toConvertNum + " " + units.get(initialUnit) + " -> " + units.get(convertUnit));
+        System.out.println(toMethod.invoke(null, conversionMethod.invoke(null, toConvertNum)) + " " + units.get(convertUnit));
+    }
+    public static Class fromType(String unitType) throws ClassNotFoundException {
+        return Class.forName(UnitConverter.class.getName() + "$" + unitType);
     }
 }
