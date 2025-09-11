@@ -134,11 +134,11 @@ public class UnitConverter {
            return x;
        }
 
-       public static double cm(double x) {
+       public static double centimeter(double x) {
            return x * 0.0001;
        }
 
-       public static double km(double x) {
+       public static double kilometer(double x) {
            return x * 1000000;
        }
 
@@ -166,14 +166,53 @@ public class UnitConverter {
            return x;
        }
 
-       public static double to_cm(double x) {
+       public static double to_centimeter(double x) {
            return x / 0.0001;
        }
 
-       public static double to_km(double x) {
+       public static double to_kilometer(double x) {
            return x / 1000000;
        }
    }
 
-   public class Volume {}
+   public class Volume {
+       public static final Map<String, String> units = Map.of(
+               "liter", "L",
+               "milliliter", "mL",
+               "centimeter", "cm^3",
+               "meter", "m^2"
+       );
+
+       public static double liter(double x) {
+           return x * 0.001;
+       }
+
+       public static double milliliter(double x) {
+           return x / 1000000;
+       }
+
+       public static double centimeter(double x) {
+           return x / 1000000;
+       }
+
+       public static double meter(double x) {
+           return x;
+       }
+
+       public static double to_liter(double x) {
+           return x / 0.001;
+       }
+
+       public static double to_milliliter(double x) {
+           return x * 1000000;
+       }
+
+       public static double to_centimeter(double x) {
+           return x * 1000000;
+       }
+
+       public static double to_meter(double x) {
+           return x;
+       }
+   }
 }
